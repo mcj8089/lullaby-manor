@@ -1,0 +1,87 @@
+[Title] LULLABY MANOR
+[Site] pipygames.com
+[Category] Adventure / Stealth · Story-driven · Casual
+[Platform] Web (HTML5 / WebGL, desktop & mobile browsers, playable offline)
+[Languages] English (default) · 简体中文 via ?lang=zh
+[Engine] Three.js r160 — all art, audio and code original
+
+■ About
+LULLABY MANOR is a 3D paper-storybook dream rescue. At midnight the little
+music box in the attic begins to play on its own. One by one the Marlowe
+family — Ollie, Dad, Biscuit the dog, Mom — fall asleep where they stand and
+do not wake. You are June. You wake as a small light with a lantern. Step
+into five nightmares, gather three lost memories in each, and bring your
+family home before dawn.
+
+Every dream has its own rule. In the nursery, the Hushlings hunt by sound.
+In the drowned study, the tide wakes the ink eels. In the thorn garden,
+hounds charge in straight lines and briar gates cut the path. In the
+clockwork attic, pendulums and sentinels move to a tick. In the mirror
+gallery, your shadow copies where you have been. No timers, no stamina —
+just observation, quiet routes, a dream ability, and one more staircase
+toward the attic.
+
+Everything you see and hear was made for this game: cardboard-and-felt
+dioramas, GLSL jelly characters, procedurally built enemies and a boss, and
+an original soundtrack. No ripped assets, no downloads, no account. Open a
+browser and play.
+
+■ How to play
+1. Move with WASD or the arrow keys. Hold Shift to tiptoe and shrink the
+   range at which nightmares can hear you.
+2. Find the three memories in each stage — lullaby notes, lost pages,
+   moonbones, brass gears or mirror shards. The exit door wakes only when
+   all three are yours.
+3. Step into the glowing door to clear the stage. If a memory is missing,
+   the door tells you how many are left.
+4. A nightmare hit spends a guard spark first, then a heart. Lose all three
+   hearts and the dream resets.
+5. Press E for the dream's ability: Hush Bell, Lantern Pulse, Dream Whistle,
+   Rewind, or Shadow Swap. In the boss fight, E spends three dawn motes to
+   loose a Dawn Flare.
+6. Abilities are never required to finish a stage, but each one is the most
+   direct answer to its dream's rule.
+7. Stars: 1 for clearing, +1 for never losing a heart, +1 for finishing
+   under the stage's par time.
+8. Keys: WASD / arrows move · Shift tiptoe · E ability · P / Esc pause ·
+   M mute. Touch: drag the left stick to move, tap the ability button, tap
+   TIPTOE to walk quietly.
+
+■ The five dreams & the family
+- The Hush Nursery — Ollie, your little brother, afraid of the dark.
+  Hushlings hunt by sound; creaky floorboards wake the whole room. Ring the
+  bell to freeze them.
+- The Drowned Study — Dad, and the work he never finished.
+  The tide rises and ink eels surface. Pulse the lantern to calm the water.
+- The Thorn Garden — Biscuit the dog, on a very long way home.
+  Briar gates block the path and hounds charge in straight lines. Whistle to
+  open the gates and stun the hounds.
+- The Clockwork Attic — Mom, and the hour she borrowed.
+  Sentinels dash on every tick and pendulums sweep the corridors. Rewind
+  four seconds to undo a mistake.
+- The Mirror Gallery — June, and your own reflection.
+  Your shadow copies where you were seconds ago. Swap places to put it
+  behind you.
+- The Weaver's Web — the music box at the top of the house.
+  A three-phase boss: gather dawn motes, press E to loose the dawn, and bring
+  the light up the last staircase.
+
+■ Features
+- 5 dreams, 15 hand-built story stages and a three-phase final boss
+- One unique rule, one ability and one collectible family per dream
+- Rescue a family member every three stages; each becomes a guard spark
+  that circles you and absorbs one hit
+- 3-star scoring, best times, stage unlocks and local save
+- Cardboard / felt dioramas, GLSL jelly characters, particles and lighting
+- Original soundtrack and 15 sound effects, all generated for LULLABY MANOR
+- Optional player name plus a 1080×1080 brag card for sharing progress
+- Share to Facebook, Reddit, Instagram, YouTube and TikTok
+- English and Simplified Chinese, switchable only by URL (?lang=zh)
+- Fully offline single-player; no account, no install
+- Splash screen with pipygames.com, a healthy-play advisory and loading bar
+
+■ SEO keywords (EN)
+lullaby manor, 3D browser game, dream game, stealth game, adventure game,
+storybook game, paper craft style, family rescue, puzzle adventure,
+free browser game, no download game, three.js game, offline browser game,
+casual adventure, dark fairy tale, music box, indie web game, pipygames

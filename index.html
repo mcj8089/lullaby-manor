@@ -1,0 +1,563 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <meta name="theme-color" content="#061215" />
+  <title>Lullaby Manor — A 3D Dream Rescue Adventure</title>
+  <meta name="description" content="Free 3D storybook adventure. Enter five nightmares, gather lost memories, and wake a family before dawn. 16 stages, five dream rules, one Weaver." />
+  <meta name="keywords" content="lullaby manor, 3d browser game, dream adventure, spooky cute game, family rescue, free online game, casual adventure, halloween game, no download" />
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="Lullaby Manor — A 3D Dream Rescue Adventure" />
+  <meta property="og:description" content="Five dreams. One family. One last lullaby. A free 3D storybook adventure on pipygames.com." />
+  <meta property="og:url" content="https://pipygames.com" />
+  <meta property="og:image" content="https://pipygames.com/assets/images/keyart-wide.jpg" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Lullaby Manor — A 3D Dream Rescue Adventure" />
+  <meta name="twitter:description" content="Five dreams. One family. One last lullaby." />
+  <meta name="twitter:image" content="https://pipygames.com/assets/images/keyart-wide.jpg" />
+  <link rel="icon" href="assets/images/emblem.png" type="image/png" />
+  <link rel="stylesheet" href="styles.css" />
+  <link rel="stylesheet" href="src/sdk/sdk-styles.css" />
+  <script type="importmap">
+    {
+      "imports": {
+        "three": "./lib/three.module.js"
+      }
+    }
+  </script>
+</head>
+<body>
+  <svg class="sprite" aria-hidden="true" focusable="false">
+    <defs>
+      <symbol id="i-star" viewBox="0 0 24 24"><path d="M12 3.5l2.6 5.4 5.9.8-4.3 4.1 1.1 5.8-5.3-2.9-5.3 2.9 1.1-5.8L3.5 9.7l5.9-.8z"/></symbol>
+      <symbol id="i-heart" viewBox="0 0 24 24"><path d="M12 20.4s-7.6-4.6-9.2-9C1.6 8 3.6 4.7 7 4.3c2-.2 3.8.9 5 2.5 1.2-1.6 3-2.7 5-2.5 3.4.4 5.4 3.7 4.2 7.1-1.6 4.4-9.2 9-9.2 9z"/></symbol>
+      <symbol id="i-spark" viewBox="0 0 24 24"><path d="M12 2.8l1.8 6.2 6.2 1.8-6.2 1.8L12 18.8l-1.8-6.2L4 10.8l6.2-1.8z"/></symbol>
+      <symbol id="i-lantern" viewBox="0 0 24 24"><path d="M9 6h6M10 3.5h4M8.2 9.5h7.6l1.1 8.2a2 2 0 0 1-2 2.3H9.1a2 2 0 0 1-2-2.3z"/><path d="M12 12v4.5M12 6V4"/></symbol>
+      <symbol id="i-share" viewBox="0 0 24 24"><circle cx="6" cy="12" r="2.6"/><circle cx="17.5" cy="6" r="2.6"/><circle cx="17.5" cy="18" r="2.6"/><path d="M8.4 10.8l6.8-3.6M8.4 13.2l6.8 3.6"/></symbol>
+      <symbol id="i-book" viewBox="0 0 24 24"><path d="M4 5.5c3.2-1 5.8-.4 8 1.2v13c-2.2-1.6-4.8-2.2-8-1.2zM20 5.5c-3.2-1-5.8-.4-8 1.2v13c2.2-1.6 4.8-2.2 8-1.2z"/></symbol>
+      <symbol id="i-question" viewBox="0 0 24 24"><circle cx="12" cy="12" r="8.6"/><path d="M9.6 9.3a2.5 2.5 0 1 1 3.4 2.3c-.7.3-1 .8-1 1.6v.5"/><circle cx="12" cy="17" r=".8" fill="currentColor" stroke="none"/></symbol>
+      <symbol id="i-sound-on" viewBox="0 0 24 24"><path d="M4 9.5h3l4.5-3.8v12.6L7 14.5H4z"/><path d="M14.5 8.5a5 5 0 0 1 0 7M17 6a8.5 8.5 0 0 1 0 12"/></symbol>
+      <symbol id="i-sound-off" viewBox="0 0 24 24"><path d="M4 9.5h3l4.5-3.8v12.6L7 14.5H4z"/><path d="M15 9l5 6M20 9l-5 6"/></symbol>
+      <symbol id="i-pause" viewBox="0 0 24 24"><path d="M9 5v14M15 5v14" stroke-width="2.4"/></symbol>
+      <symbol id="i-play" viewBox="0 0 24 24"><path d="M8 5.5l11 6.5-11 6.5z"/></symbol>
+      <symbol id="i-close" viewBox="0 0 24 24"><path d="M6 6l12 12M18 6L6 18"/></symbol>
+      <symbol id="i-map" viewBox="0 0 24 24"><path d="M3.5 6.5l5.5-2 6 2 5.5-2v13l-5.5 2-6-2-5.5 2z"/><path d="M9 4.5v13M15 6.5v13"/></symbol>
+      <symbol id="i-copy" viewBox="0 0 24 24"><rect x="8.5" y="8.5" width="11" height="11" rx="2"/><path d="M15.5 8.5v-2a2 2 0 0 0-2-2h-7a2 2 0 0 0-2 2v7a2 2 0 0 0 2 2h2"/></symbol>
+      <symbol id="i-download" viewBox="0 0 24 24"><path d="M12 4v10M8 10.5l4 4 4-4M5 19h14"/></symbol>
+      <symbol id="i-arrow" viewBox="0 0 24 24"><path d="M5 12h13M13 6.5l5.5 5.5-5.5 5.5"/></symbol>
+      <symbol id="i-lock" viewBox="0 0 24 24"><rect x="5.5" y="10" width="13" height="9.5" rx="2"/><path d="M8.5 10V7.8a3.5 3.5 0 0 1 7 0V10"/></symbol>
+      <symbol id="i-clock" viewBox="0 0 24 24"><circle cx="12" cy="12" r="8.6"/><path d="M12 7.2v5.3l3.4 2"/></symbol>
+      <symbol id="i-note" viewBox="0 0 24 24"><path d="M9 17.5V6.2l9-1.7v11"/><ellipse cx="6.7" cy="17.6" rx="2.4" ry="1.9"/><ellipse cx="15.7" cy="15.6" rx="2.4" ry="1.9"/></symbol>
+      <symbol id="i-walk" viewBox="0 0 24 24"><circle cx="13" cy="4.7" r="1.7"/><path d="M11 8l-2.4 5.2 3 2.2.8 4.2M11 8l3.4 2.4.8 3.4M13.4 13.2l3.4 5.6M8.6 13.2L5.5 19"/></symbol>
+      <symbol id="i-bell" viewBox="0 0 24 24"><path d="M6 16.5c1-1.2 1.4-2.7 1.4-4.8 0-3 2-5.2 4.6-5.2s4.6 2.2 4.6 5.2c0 2.1.4 3.6 1.4 4.8z"/><path d="M10.4 19a1.8 1.8 0 0 0 3.2 0M12 4v2.5"/></symbol>
+      <symbol id="i-pulse" viewBox="0 0 24 24"><circle cx="12" cy="12" r="3"/><path d="M6.5 6.5a7.8 7.8 0 0 0 0 11M17.5 6.5a7.8 7.8 0 0 1 0 11M3.5 3.5a12 12 0 0 0 0 17M20.5 3.5a12 12 0 0 1 0 17"/></symbol>
+      <symbol id="i-whistle" viewBox="0 0 24 24"><path d="M4 13.5a5 5 0 0 0 5 5h3a7 7 0 0 0 6.8-8.5H8"/><circle cx="9" cy="14" r="2"/><path d="M18 5.5l2-2M18.5 9h2.5"/></symbol>
+      <symbol id="i-rewind" viewBox="0 0 24 24"><path d="M4 5v6h6"/><path d="M4.7 11a8 8 0 1 1 .9 4.6"/></symbol>
+      <symbol id="i-swap" viewBox="0 0 24 24"><path d="M4 8h14l-3.5-3.5M20 16H6l3.5 3.5"/><circle cx="17" cy="4.5" r="1.4"/></symbol>
+      <symbol id="i-flare" viewBox="0 0 24 24"><circle cx="12" cy="12" r="3.4"/><path d="M12 2.5v3M12 18.5v3M2.5 12h3M18.5 12h3M5.3 5.3l2.1 2.1M16.6 16.6l2.1 2.1M18.7 5.3l-2.1 2.1M7.4 16.6l-2.1 2.1"/></symbol>
+      <symbol id="i-facebook" viewBox="0 0 24 24"><path d="M13.5 21v-8h2.7l.4-3h-3.1V8.2c0-.9.3-1.5 1.6-1.5h1.7V4.1c-.3 0-1.3-.1-2.4-.1-2.4 0-4 1.4-4 4.1V10H7.6v3h2.8v8z" fill="currentColor" stroke="none"/></symbol>
+      <symbol id="i-reddit" viewBox="0 0 24 24"><circle cx="12" cy="14" r="6" fill="currentColor" stroke="none" opacity=".22"/><circle cx="12" cy="14" r="6"/><circle cx="9.2" cy="13.4" r=".9" fill="currentColor" stroke="none"/><circle cx="14.8" cy="13.4" r=".9" fill="currentColor" stroke="none"/><path d="M9.4 16.3c1.6 1.1 3.6 1.1 5.2 0M12 8l1-4 3 1"/></symbol>
+      <symbol id="i-instagram" viewBox="0 0 24 24"><rect x="4" y="4" width="16" height="16" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17" cy="7" r="1" fill="currentColor" stroke="none"/></symbol>
+      <symbol id="i-youtube" viewBox="0 0 24 24"><rect x="3" y="6" width="18" height="12" rx="3.4"/><path d="M10.4 9.3l4.6 2.7-4.6 2.7z" fill="currentColor" stroke="none"/></symbol>
+      <symbol id="i-tiktok" viewBox="0 0 24 24"><path d="M14 4v10.3a3.7 3.7 0 1 1-3.2-3.7"/><path d="M14 4c.4 2.6 2 4.2 4.8 4.4"/></symbol>
+    </defs>
+  </svg>
+
+  <div class="app" id="app">
+    <div class="stage-root" id="stage-root" aria-hidden="true"></div>
+    <div class="stage-grade" aria-hidden="true"></div>
+    <div class="stage-grain" aria-hidden="true"></div>
+    <div class="stage-frame" aria-hidden="true"><i></i><i></i><i></i><i></i></div>
+
+    <!-- ============================ BOOT ============================ -->
+    <section class="boot screen is-on" id="boot" aria-labelledby="boot-title">
+      <div class="boot-haze" aria-hidden="true"></div>
+      <div class="boot-inner">
+        <div class="boot-crest" aria-hidden="true">
+          <span class="crest-ring"></span>
+          <span class="crest-ring second"></span>
+          <img id="boot-emblem" data-asset="emblem" alt="" />
+          <span class="crest-wisp"></span>
+        </div>
+        <div class="boot-word">
+          <p class="eyebrow">PIPYGAMES.COM</p>
+          <h1 class="boot-title" id="boot-title"><span data-i18n="brand.name">LULLABY MANOR</span></h1>
+          <p class="boot-tagline" data-i18n="brand.tagline">Five dreams. One family. One last lullaby.</p>
+        </div>
+        <div class="boot-progress">
+          <div class="boot-track"><i id="boot-bar"></i></div>
+          <div class="boot-meta">
+            <p class="boot-stage" id="boot-stage" data-i18n="boot.stage.engine">Lighting the lantern</p>
+            <span class="boot-pct" id="boot-pct">0%</span>
+          </div>
+        </div>
+        <button class="btn btn-primary btn-enter" id="boot-play" hidden>
+          <span class="btn-glow" aria-hidden="true"></span>
+          <svg class="ic" aria-hidden="true"><use href="#i-play"></use></svg>
+          <span data-i18n="boot.play">Enter the manor</span>
+        </button>
+        <p class="boot-fail" id="boot-fail" hidden data-i18n="boot.failedHint">The dream would not open. Refresh, or try a browser with WebGL enabled.</p>
+        <p class="boot-visit">
+          <span data-i18n="boot.visit">Now dreaming at</span>
+          <a href="https://pipygames.com" target="_blank" rel="noopener">pipygames.com</a>
+        </p>
+        <aside class="health-note">
+          <h2 data-i18n="boot.healthTitle">HEALTH ADVISORY / 健康游戏忠告</h2>
+          <p data-i18n="boot.healthText">Avoid unhealthy or pirated games. Protect your privacy, rest your eyes every 30 minutes, and play in moderation.</p>
+        </aside>
+      </div>
+    </section>
+
+    <!-- ============================ MENU ============================ -->
+    <section class="menu screen" id="menu" hidden aria-labelledby="menu-title">
+      <header class="menu-top">
+        <div class="brand-lockup">
+          <span class="brand-crest" aria-hidden="true"><img data-asset="emblem" alt="" /><i></i></span>
+          <div class="brand-words">
+            <p class="eyebrow" data-i18n="brand.kicker">A 3D dream-rescue tale</p>
+            <h1 class="brand-name" id="menu-title" data-i18n="brand.name">LULLABY MANOR</h1>
+          </div>
+        </div>
+        <nav class="menu-tools" aria-label="Menu">
+          <button class="tool" data-action="how" type="button">
+            <svg class="ic" aria-hidden="true"><use href="#i-question"></use></svg>
+            <span data-i18n="menu.how">How to play</span>
+          </button>
+          <button class="tool" data-action="story" type="button">
+            <svg class="ic" aria-hidden="true"><use href="#i-book"></use></svg>
+            <span data-i18n="menu.story">The story</span>
+          </button>
+          <button class="tool" data-action="share" type="button">
+            <svg class="ic" aria-hidden="true"><use href="#i-share"></use></svg>
+            <span data-i18n="menu.share">Share</span>
+          </button>
+          <button class="tool tool-icon" data-action="sound" id="menu-sound" type="button" data-i18n-aria="menu.sound" title="Sound">
+            <svg class="ic" aria-hidden="true"><use href="#i-sound-on"></use></svg>
+            <span class="sr-only" data-i18n="menu.sound">Sound</span>
+          </button>
+        </nav>
+      </header>
+
+      <div class="menu-grid">
+        <div class="menu-hero">
+          <figure class="hero-card">
+            <div class="hero-art"><img id="menu-hero-art" data-asset="keyart" alt="" /></div>
+            <div class="hero-haze" aria-hidden="true"></div>
+            <figcaption>
+              <p class="eyebrow" data-i18n="brand.kicker">A 3D dream-rescue tale</p>
+              <h2 data-i18n="brand.sub">A storybook nightmare about bringing a family home.</h2>
+              <p class="hero-tagline" data-i18n="brand.tagline">Five dreams. One family. One last lullaby.</p>
+              <div class="hero-stamps">
+                <span><svg class="ic" aria-hidden="true"><use href="#i-star"></use></svg><span data-i18n="menu.badge">5 dreams · 16 stages · 1 weaver</span></span>
+              </div>
+            </figcaption>
+          </figure>
+
+          <div class="start-card">
+            <div class="start-meta">
+              <span id="menu-progress">0 of 16 stages woken</span>
+              <span class="start-stars"><svg class="ic" aria-hidden="true"><use href="#i-star"></use></svg><b id="menu-stars">0</b> / 48</span>
+            </div>
+            <button class="btn btn-primary btn-continue" id="menu-continue" type="button">
+              <span class="btn-glow" aria-hidden="true"></span>
+              <span class="continue-main">
+                <span class="continue-label" data-i18n="menu.continue">Continue</span>
+                <small id="menu-continue-hint">Stage 1 · The Hush Nursery</small>
+              </span>
+              <svg class="ic" aria-hidden="true"><use href="#i-arrow"></use></svg>
+            </button>
+            <p class="blessing-line" id="menu-blessing" hidden>
+              <svg class="ic" aria-hidden="true"><use href="#i-spark"></use></svg>
+              <span data-i18n="menu.blessing">+1 guard blessing ready for the next dream</span>
+            </p>
+            <p class="start-note" id="menu-empty" hidden data-i18n="menu.continueEmpty">Five dreams are waiting</p>
+          </div>
+        </div>
+
+        <div class="menu-map">
+          <header class="map-head">
+            <div>
+              <p class="eyebrow" data-i18n="menu.stages">Stages</p>
+              <h2 data-i18n="menu.dreams">The five dreams</h2>
+            </div>
+            <p class="map-hint" data-i18n="menu.mapHint">Each dream follows its own rule. Rescued family circle you as guard sparks.</p>
+          </header>
+
+          <div class="dream-grid" id="dream-grid"></div>
+
+          <article class="boss-card is-locked" id="boss-card">
+            <div class="boss-art"><img data-asset="dreamWeaver" alt="" /></div>
+            <div class="boss-body">
+              <p class="eyebrow" data-i18n="boss.kicker">THE LAST DREAM</p>
+              <h3 data-i18n="menu.boss">The Weaver's Web</h3>
+              <p class="boss-lock-copy" id="boss-lock-copy" data-i18n="menu.bossLocked">Rescue all five dreams to open the attic</p>
+              <div class="boss-stars" id="boss-stars" aria-hidden="true"></div>
+              <div class="boss-actions">
+                <button class="btn btn-small btn-primary" id="boss-start" type="button" disabled>
+                  <span data-i18n="boss.fight">Face the Weaver</span>
+                  <svg class="ic" aria-hidden="true"><use href="#i-arrow"></use></svg>
+                </button>
+              </div>
+            </div>
+          </article>
+
+          <section class="family-strip" aria-labelledby="family-title">
+            <h3 id="family-title" data-i18n="menu.familyLabel">Family</h3>
+            <ul id="family-strip"></ul>
+          </section>
+        </div>
+      </div>
+
+      <footer class="menu-footer">
+        <span data-i18n="menu.footerMade">A Pipy Games storybook</span>
+        <span class="footer-dot" aria-hidden="true"></span>
+        <span data-i18n="footer.health">Healthy gaming: stretch every 30 minutes, no loot boxes, no chat.</span>
+        <a href="https://pipygames.com" target="_blank" rel="noopener">pipygames.com</a>
+      </footer>
+    </section>
+
+    <!-- ============================ HUD ============================ -->
+    <section class="hud" id="hud" hidden aria-live="polite">
+      <div class="hud-top">
+        <div class="hud-level">
+          <p class="hud-stage" id="hud-stage">STAGE 1</p>
+          <h2 id="hud-dream-name">The Hush Nursery</h2>
+          <div class="hud-levelrow">
+            <span id="hud-level-name">Under the Cradle</span>
+            <span class="hud-clock"><svg class="ic" aria-hidden="true"><use href="#i-clock"></use></svg><b id="hud-time">0:00</b><i>/</i><span id="hud-par">1:30</span></span>
+          </div>
+        </div>
+
+        <div class="boss-hud" id="hud-boss" hidden>
+          <div class="boss-hud-head">
+            <span class="boss-hud-name" data-i18n="hud.boss">THE WEAVER</span>
+            <span class="boss-hud-phase" id="hud-boss-phase">I</span>
+          </div>
+          <div class="boss-track"><i id="hud-boss-bar"></i><span class="boss-ticks" aria-hidden="true"><b></b><b></b></span></div>
+          <div class="boss-hud-foot">
+            <span class="boss-phases" id="hud-boss-phases" aria-hidden="true"></span>
+            <span class="boss-charge" id="hud-charge"><svg class="ic" aria-hidden="true"><use href="#i-spark"></use></svg><span>DAWN 0/3</span></span>
+          </div>
+        </div>
+
+        <div class="hud-status">
+          <div class="hud-hearts" id="hud-hearts" data-i18n-aria="hud.hearts" aria-label="3 hearts"></div>
+          <div class="hud-guards" id="hud-guards" data-i18n-aria="hud.guards" aria-label="0 guard sparks">
+            <svg class="ic" aria-hidden="true"><use href="#i-spark"></use></svg><b>0</b>
+          </div>
+          <div class="hud-tools">
+            <button class="hud-icon" id="hud-pause" data-action="pause" type="button" data-i18n-aria="hud.pause" title="Pause">
+              <svg class="ic" aria-hidden="true"><use href="#i-pause"></use></svg>
+            </button>
+            <button class="hud-icon" id="hud-sound" data-action="sound" type="button" data-i18n-aria="hud.sound" title="Sound">
+              <svg class="ic" aria-hidden="true"><use href="#i-sound-on"></use></svg>
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <div class="hud-objective">
+        <span class="objective-label" data-i18n="hud.memory">MEMORIES</span>
+        <span class="memory-pips" id="hud-memories" aria-hidden="true"></span>
+        <span class="hud-exit" id="hud-exit">Find 3 lullaby notes</span>
+      </div>
+
+      <div class="hud-bottom">
+        <div class="joystick-wrap">
+          <div class="joystick" id="joystick" data-i18n-aria="a11y.joystick" aria-label="Movement stick" role="application">
+            <i class="stick-ring" aria-hidden="true"></i>
+            <i class="stick-knob" id="joystick-knob" aria-hidden="true"></i>
+          </div>
+        </div>
+
+        <div class="hud-tip" id="hud-tip">
+          <span class="tip-keys"><kbd>W</kbd><kbd>A</kbd><kbd>S</kbd><kbd>D</kbd></span>
+          <span class="tip-copy" data-i18n="hud.shiftHint">Hold Shift to tiptoe</span>
+        </div>
+
+        <div class="hud-actions">
+          <button class="quiet-btn" id="hud-quiet" type="button" data-i18n-aria="hud.quiet">
+            <svg class="ic" aria-hidden="true"><use href="#i-walk"></use></svg>
+            <span data-i18n="hud.quiet">TIPTOE</span>
+          </button>
+          <button class="ability-btn" id="hud-ability" type="button" data-i18n-aria="a11y.ability">
+            <span class="ability-orbit" aria-hidden="true"></span>
+            <span class="ability-face">
+              <svg class="ic ability-glyph" aria-hidden="true"><use href="#i-bell"></use></svg>
+              <span class="ability-text">
+                <b id="ability-label">Hush Bell</b>
+                <small id="hud-cooldown">READY</small>
+              </span>
+            </span>
+            <span class="ability-key" aria-hidden="true">E</span>
+          </button>
+        </div>
+      </div>
+
+      <div class="tutorial" id="tutorial" hidden>
+        <svg class="ic" aria-hidden="true"><use href="#i-spark"></use></svg>
+        <p id="tutorial-text"></p>
+        <button type="button" id="tutorial-close" aria-label="Dismiss"><svg class="ic" aria-hidden="true"><use href="#i-close"></use></svg></button>
+      </div>
+    </section>
+
+    <!-- ============================ STORY ============================ -->
+    <div class="layer story-layer" id="story" hidden>
+      <article class="panel story-panel" role="dialog" aria-modal="true" aria-labelledby="story-title">
+        <button class="panel-x" type="button" data-action="story-close" aria-label="Close"><svg class="ic" aria-hidden="true"><use href="#i-close"></use></svg></button>
+        <div class="story-art"><img id="story-art" data-asset="keyartWide" alt="" /><span class="story-art-shade" aria-hidden="true"></span></div>
+        <div class="story-copy">
+          <p class="eyebrow" data-i18n="story.kicker">Before midnight</p>
+          <h2 id="story-title" data-i18n="story.title">The music box would not stop</h2>
+          <div class="story-prose">
+            <p data-i18n="story.p1">At midnight, the little music box in the attic began to play on its own. One by one, the Marlowe family fell asleep where they stood — and did not wake.</p>
+            <p data-i18n="story.p2">Ollie. Dad. Biscuit. Mom. Each one is trapped inside a different nightmare, and the house has grown strange around them.</p>
+            <p data-i18n="story.p3">You are June. You woke as a small light with a lantern. Gather three lost memories in every dream, wake your family, and climb to the attic before dawn.</p>
+          </div>
+          <div class="story-flourish" aria-hidden="true"><i></i><svg class="ic"><use href="#i-spark"></use></svg><i></i></div>
+          <div class="panel-actions">
+            <button class="btn btn-primary" type="button" id="story-enter"><span data-i18n="story.enter">Step into the dreams</span><svg class="ic" aria-hidden="true"><use href="#i-arrow"></use></svg></button>
+            <button class="btn btn-ghost" type="button" id="story-skip" data-i18n="story.skip">Skip the story</button>
+          </div>
+        </div>
+      </article>
+    </div>
+
+    <!-- ============================ HOW TO ============================ -->
+    <div class="layer how-layer" id="how" hidden>
+      <article class="panel how-panel" role="dialog" aria-modal="true" aria-labelledby="how-title">
+        <button class="panel-x" type="button" data-action="how-close" aria-label="Close"><svg class="ic" aria-hidden="true"><use href="#i-close"></use></svg></button>
+        <p class="eyebrow" data-i18n="howTo.sub">Five dreams, five rules. Every stage asks for three memories and a way out.</p>
+        <h2 id="how-title" data-i18n="howTo.title">How to play</h2>
+        <div class="how-grid">
+          <section class="how-card how-goal">
+            <h3><svg class="ic" aria-hidden="true"><use href="#i-lantern"></use></svg><span data-i18n="howTo.goal">The goal</span></h3>
+            <p data-i18n="howTo.goalBody">Find all three memories, then step into the glowing door. Nightmares cost a heart or a guard spark. Lose all light and the dream resets.</p>
+          </section>
+          <section class="how-card">
+            <h3><svg class="ic" aria-hidden="true"><use href="#i-spark"></use></svg><span data-i18n="howTo.family">The family</span></h3>
+            <p data-i18n="howTo.familyBody">Every dream you wake adds a rescued soul to your swarm. Each one circles you as a guard spark and absorbs one hit.</p>
+          </section>
+          <section class="how-card how-controls">
+            <h3><svg class="ic" aria-hidden="true"><use href="#i-play"></use></svg><span data-i18n="howTo.controls">Controls</span></h3>
+            <p data-i18n="howTo.move">WASD or arrow keys — move · Shift — tiptoe · E — dream ability · P / Esc — pause · M — mute</p>
+            <p data-i18n="howTo.touch">Touch: drag the left stick to move · tap the action button for the dream ability · tap TIPTOE to walk quietly.</p>
+          </section>
+          <section class="how-card how-dreams">
+            <h3><svg class="ic" aria-hidden="true"><use href="#i-book"></use></svg><span data-i18n="howTo.dreams">Five nightmares, five rules</span></h3>
+            <ul class="rule-list">
+              <li><i class="rule-swatch" style="--swatch:#8fe3cf"></i><span data-i18n="howTo.nursery">Hushlings hunt by sound. Tiptoe past, ring the bell to freeze them.</span></li>
+              <li><i class="rule-swatch" style="--swatch:#f0bf7a"></i><span data-i18n="howTo.study">The tide wakes the ink eels. Pulse the lantern to calm the water.</span></li>
+              <li><i class="rule-swatch" style="--swatch:#c9a7ff"></i><span data-i18n="howTo.garden">Thorn gates block the path. Whistle to open them and stun the hounds.</span></li>
+              <li><i class="rule-swatch" style="--swatch:#ffcf7a"></i><span data-i18n="howTo.attic">Sentinels dash on every tick. Rewind four seconds to undo a mistake.</span></li>
+              <li><i class="rule-swatch" style="--swatch:#9dc7ff"></i><span data-i18n="howTo.gallery">Your shadow copies you. Swap places to put it behind you.</span></li>
+            </ul>
+          </section>
+          <section class="how-card how-tips">
+            <h3><svg class="ic" aria-hidden="true"><use href="#i-star"></use></svg><span data-i18n="howTo.tips">Three small secrets</span></h3>
+            <ol class="tip-list">
+              <li data-i18n="howTo.tip1">Guard sparks are spent before hearts. Rescue family early and later dreams get kinder.</li>
+              <li data-i18n="howTo.tip2">Par time plus an untouched lantern earns three stars.</li>
+              <li data-i18n="howTo.tip3">The dream ability always has a HUD button with its cooldown.</li>
+            </ol>
+          </section>
+        </div>
+        <div class="panel-actions center">
+          <button class="btn btn-primary" type="button" data-action="how-close"><span data-i18n="howTo.close">Back to the manor</span></button>
+        </div>
+      </article>
+    </div>
+
+    <!-- ============================ PAUSE ============================ -->
+    <div class="layer pause-layer" id="pause" hidden>
+      <article class="panel pause-panel" role="dialog" aria-modal="true" aria-labelledby="pause-title">
+        <p class="eyebrow" id="pause-dream">The Hush Nursery</p>
+        <h2 id="pause-title" data-i18n="pause.title">A breath between dreams</h2>
+        <p class="panel-sub" data-i18n="pause.sub">The nightmare waits. So can you.</p>
+        <p class="pause-stage" id="pause-level">Under the Cradle</p>
+        <div class="pause-actions">
+          <button class="btn btn-primary" type="button" id="pause-resume"><svg class="ic" aria-hidden="true"><use href="#i-play"></use></svg><span data-i18n="pause.resume">Keep dreaming</span></button>
+          <button class="btn btn-ghost" type="button" id="pause-restart"><svg class="ic" aria-hidden="true"><use href="#i-rewind"></use></svg><span data-i18n="pause.restart">Restart stage</span></button>
+          <button class="btn btn-ghost" type="button" id="pause-how"><svg class="ic" aria-hidden="true"><use href="#i-question"></use></svg><span data-i18n="pause.how">How to play</span></button>
+          <button class="btn btn-ghost" type="button" id="pause-sound"><svg class="ic" aria-hidden="true"><use href="#i-sound-on"></use></svg><span data-i18n="pause.sound">Sound</span></button>
+          <button class="btn btn-quiet" type="button" id="pause-quit"><span data-i18n="pause.quit">Leave the dream</span></button>
+        </div>
+        <p class="panel-note" data-i18n="pause.saved">Progress saves on this device</p>
+      </article>
+    </div>
+
+    <!-- ============================ WIN ============================ -->
+    <div class="layer win-layer" id="win" hidden>
+      <article class="panel win-panel" role="dialog" aria-modal="true" aria-labelledby="win-title">
+        <div class="panel-ribbon"><span id="win-kicker">DREAM WOKEN</span><i aria-hidden="true"></i><span id="win-level">Under the Cradle</span></div>
+        <h2 id="win-title">Ollie is awake</h2>
+        <div class="win-stars" id="win-stars" aria-label="Stars earned"></div>
+        <p class="win-starhint" id="win-starhint">No hits and under par time earns three stars.</p>
+        <div class="win-stats">
+          <div class="stat"><span data-i18n="win.time">Time</span><b id="win-time">1:12</b><small id="win-par">par 1:30</small></div>
+          <div class="stat"><span data-i18n="win.notes">Memories</span><b id="win-notes">3 / 3</b><small id="win-record"></small></div>
+          <div class="stat"><span data-i18n="win.stars">Stars</span><b id="win-total">0 / 48</b><small id="win-stars-earned">3 / 3</small></div>
+        </div>
+        <div class="companion-card" id="win-companion" hidden>
+          <div class="companion-portrait"><img id="win-portrait" alt="" /><span class="portrait-ring" aria-hidden="true"></span></div>
+          <div class="companion-copy">
+            <p class="eyebrow" data-i18n="win.companionKicker">A NEW LIGHT</p>
+            <h3 id="win-companion-name">Ollie joins your swarm</h3>
+            <p id="win-companion-body"></p>
+          </div>
+          <svg class="companion-spark ic" aria-hidden="true"><use href="#i-spark"></use></svg>
+        </div>
+        <div class="blessing-row">
+          <button class="btn btn-blessing" type="button" id="win-blessing"><svg class="ic" aria-hidden="true"><use href="#i-spark"></use></svg><span data-i18n="win.blessing">Watch an ad · +1 guard next dream</span></button>
+          <p class="blessing-ready" id="win-blessing-note" hidden data-i18n="win.blessingOk">A guardian blessing will wait for you</p>
+        </div>
+        <div class="panel-actions">
+          <button class="btn btn-primary" type="button" id="win-next"><span id="win-next-label">Next dream</span><svg class="ic" aria-hidden="true"><use href="#i-arrow"></use></svg></button>
+          <button class="btn btn-ghost" type="button" id="win-replay" data-i18n="win.replay">Replay</button>
+          <button class="btn btn-ghost" type="button" id="win-share"><svg class="ic" aria-hidden="true"><use href="#i-share"></use></svg><span data-i18n="win.share">Share the rescue</span></button>
+          <button class="btn btn-ghost" type="button" id="win-map"><svg class="ic" aria-hidden="true"><use href="#i-map"></use></svg><span data-i18n="win.map">Manor map</span></button>
+        </div>
+      </article>
+    </div>
+
+    <!-- ============================ LOSE ============================ -->
+    <div class="layer lose-layer" id="lose" hidden>
+      <article class="panel lose-panel" role="dialog" aria-modal="true" aria-labelledby="lose-title">
+        <p class="eyebrow" data-i18n="lose.kicker">THE DREAM WINS</p>
+        <h2 id="lose-title" data-i18n="lose.title">Your lantern went out</h2>
+        <p class="panel-sub" data-i18n="lose.desc">The nightmare closed its hand around your little light. Shake yourself awake and try again.</p>
+        <p class="lose-note" id="lose-notes">Memories found 0/3</p>
+        <p class="lose-hint" id="lose-hint"></p>
+        <div class="panel-actions column">
+          <button class="btn btn-primary" type="button" id="lose-revive"><svg class="ic" aria-hidden="true"><use href="#i-spark"></use></svg><span data-i18n="lose.revive">Watch an ad · relight with 1 heart</span></button>
+          <button class="btn btn-ghost" type="button" id="lose-retry"><span data-i18n="lose.retry">Try again</span></button>
+          <div class="inline-actions">
+            <button class="btn btn-ghost btn-small" type="button" id="lose-share"><svg class="ic" aria-hidden="true"><use href="#i-share"></use></svg><span data-i18n="lose.share">Share the attempt</span></button>
+            <button class="btn btn-ghost btn-small" type="button" id="lose-map"><svg class="ic" aria-hidden="true"><use href="#i-map"></use></svg><span data-i18n="lose.map">Return to the manor</span></button>
+          </div>
+        </div>
+      </article>
+    </div>
+
+    <!-- ============================ BOSS INTRO ============================ -->
+    <div class="layer boss-layer" id="boss-intro" hidden>
+      <article class="boss-intro" role="dialog" aria-modal="true" aria-labelledby="boss-title">
+        <div class="boss-intro-art"><img data-asset="dreamWeaver" alt="" /><span class="boss-intro-shade" aria-hidden="true"></span></div>
+        <div class="boss-intro-copy">
+          <p class="eyebrow" data-i18n="boss.kicker">THE LAST DREAM</p>
+          <h2 id="boss-title" data-i18n="boss.intro">The loom wakes</h2>
+          <p class="boss-subtitle" data-i18n="boss.subtitle">Keeper of the music box</p>
+          <p class="boss-line" data-i18n="boss.line">Five small lights climb the stairs. The Weaver has been waiting for a sixth.</p>
+          <div class="boss-intro-phases" aria-hidden="true"><i></i><i></i><i></i></div>
+          <button class="btn btn-primary btn-boss" type="button" id="boss-face"><svg class="ic" aria-hidden="true"><use href="#i-flare"></use></svg><span data-i18n="boss.fight">Face the Weaver</span></button>
+        </div>
+      </article>
+    </div>
+
+    <!-- ============================ ENDING ============================ -->
+    <div class="layer ending-layer" id="ending" hidden>
+      <article class="panel ending-panel" role="dialog" aria-modal="true" aria-labelledby="ending-title">
+        <p class="eyebrow" data-i18n="ending.kicker">DAWN</p>
+        <h2 id="ending-title" data-i18n="ending.title">The manor breathes</h2>
+        <p class="panel-sub" data-i18n="ending.body">The music box plays one last, gentle note. Downstairs, the kettle begins to sing. Five lights are home.</p>
+        <div class="ending-family" id="ending-family"></div>
+        <div class="ending-stats">
+          <div class="stat"><span data-i18n="ending.time">Night survived</span><b id="ending-time">0:00</b></div>
+          <div class="stat"><span data-i18n="ending.stars">Stars gathered</span><b id="ending-stars">0 / 48</b></div>
+          <div class="stat"><span data-i18n="menu.stages">Stages</span><b id="ending-cleared">0 / 16</b></div>
+        </div>
+        <p class="ending-tag" data-i18n="ending.tag">Thank you for bringing them home.</p>
+        <div class="panel-actions">
+          <button class="btn btn-primary" type="button" id="ending-share"><svg class="ic" aria-hidden="true"><use href="#i-share"></use></svg><span data-i18n="ending.share">Share the dawn</span></button>
+          <button class="btn btn-ghost" type="button" id="ending-again"><svg class="ic" aria-hidden="true"><use href="#i-rewind"></use></svg><span data-i18n="ending.again">Dream again</span></button>
+          <button class="btn btn-ghost" type="button" id="ending-menu"><svg class="ic" aria-hidden="true"><use href="#i-map"></use></svg><span data-i18n="ending.menu">Manor map</span></button>
+        </div>
+      </article>
+    </div>
+
+    <!-- ============================ HEALTH ============================ -->
+    <div class="layer health-layer" id="health" hidden>
+      <article class="panel health-panel" role="dialog" aria-modal="true" aria-labelledby="health-title">
+        <div class="health-emblem" aria-hidden="true"><svg class="ic"><use href="#i-lantern"></use></svg></div>
+        <p class="eyebrow" data-i18n="boot.healthTitle">HEALTH ADVISORY</p>
+        <h2 id="health-title" data-i18n="health.title">Dreams need rest</h2>
+        <p class="panel-sub" data-i18n="health.body">You have been wandering for 45 minutes. Blink slowly, stretch your shoulders, and drink some water. The manor will keep.</p>
+        <div class="panel-actions">
+          <button class="btn btn-primary" type="button" id="health-continue" data-i18n="health.continue">Back to the dream</button>
+          <button class="btn btn-ghost" type="button" id="health-break" data-i18n="health.break">Take a break</button>
+        </div>
+      </article>
+    </div>
+
+    <!-- ============================ SHARE ============================ -->
+    <div class="layer share-layer" id="share" hidden>
+      <article class="panel share-panel" role="dialog" aria-modal="true" aria-labelledby="share-title">
+        <button class="panel-x" type="button" data-action="share-close" aria-label="Close"><svg class="ic" aria-hidden="true"><use href="#i-close"></use></svg></button>
+        <div class="share-head">
+          <p class="eyebrow" data-i18n="brand.name">LULLABY MANOR</p>
+          <h2 id="share-title" data-i18n="share.title">Pass the lantern</h2>
+          <p data-i18n="share.subtitle">Add a name if you like, then share the dream.</p>
+        </div>
+        <div class="share-body">
+          <div class="share-card-wrap">
+            <canvas id="share-canvas" width="1080" height="1080" data-i18n-aria="a11y.shareCard" aria-label="Your share card"></canvas>
+          </div>
+          <div class="share-controls">
+            <label class="field" for="share-name">
+              <span data-i18n="share.name">Your name (optional)</span>
+              <input id="share-name" type="text" maxlength="16" autocomplete="nickname" placeholder="A fellow dreamer" data-i18n-placeholder="share.namePlaceholder" />
+            </label>
+            <div class="share-buttons">
+              <button class="btn btn-primary" type="button" id="share-download"><svg class="ic" aria-hidden="true"><use href="#i-download"></use></svg><span data-i18n="share.download">Download card</span></button>
+              <button class="btn btn-ghost" type="button" id="share-copy"><svg class="ic" aria-hidden="true"><use href="#i-copy"></use></svg><span data-i18n="share.copy">Copy invite</span></button>
+              <button class="btn btn-ghost" type="button" id="share-native"><svg class="ic" aria-hidden="true"><use href="#i-share"></use></svg><span data-i18n="share.native">Share…</span></button>
+            </div>
+            <div class="social-grid" aria-label="Social networks">
+              <button class="social fb" type="button" data-share="fb"><svg class="ic" aria-hidden="true"><use href="#i-facebook"></use></svg><span data-i18n="share.fb">Facebook</span></button>
+              <button class="social reddit" type="button" data-share="reddit"><svg class="ic" aria-hidden="true"><use href="#i-reddit"></use></svg><span data-i18n="share.reddit">Reddit</span></button>
+              <button class="social ig" type="button" data-share="ig"><svg class="ic" aria-hidden="true"><use href="#i-instagram"></use></svg><span data-i18n="share.ig">Instagram</span></button>
+              <button class="social yt" type="button" data-share="yt"><svg class="ic" aria-hidden="true"><use href="#i-youtube"></use></svg><span data-i18n="share.yt">YouTube</span></button>
+              <button class="social tt" type="button" data-share="tt"><svg class="ic" aria-hidden="true"><use href="#i-tiktok"></use></svg><span data-i18n="share.tt">TikTok</span></button>
+            </div>
+            <p class="share-hint" id="share-hint"></p>
+          </div>
+        </div>
+      </article>
+    </div>
+
+    <!-- ============================ DOMAIN LOCK ============================ -->
+    <div class="layer domain-layer" id="domain" hidden>
+      <article class="domain-card" role="dialog" aria-modal="true" aria-labelledby="domain-title">
+        <div class="domain-seal" aria-hidden="true"><svg class="ic"><use href="#i-lock"></use></svg></div>
+        <p class="eyebrow" data-i18n="domain.kicker">PIPYGAMES.COM</p>
+        <h2 id="domain-title" data-i18n="domain.title">This dream belongs to pipygames.com</h2>
+        <p data-i18n="domain.desc">Lullaby Manor is licensed to pipygames.com. Taking you home in 3 seconds.</p>
+        <p class="domain-visit"><a href="https://pipygames.com" data-i18n="domain.visit">Play the full dream at pipygames.com</a></p>
+        <div class="domain-count" id="domain-count" aria-live="assertive">3</div>
+        <p class="domain-locked"><svg class="ic" aria-hidden="true"><use href="#i-lock"></use></svg><span data-i18n="domain.locked">Domain not licensed</span></p>
+      </article>
+    </div>
+
+    <!-- ============================ OVERLAYS ============================ -->
+    <div class="toasts" id="toasts" aria-live="polite"></div>
+    <div class="flash" id="flash" aria-hidden="true"></div>
+
+    <div class="ad-screen" id="ad-overlay" hidden>
+      <div class="ad-box">
+        <div class="ad-spinner" aria-hidden="true"><i></i><i></i><i></i></div>
+        <p class="ad-label" id="ad-label">ADVERTISEMENT</p>
+        <p class="ad-note">PIPYGAMES.COM</p>
+      </div>
+    </div>
+
+    <noscript>
+      <div class="noscript">Lullaby Manor needs JavaScript and WebGL to open its doors.</div>
+    </noscript>
+  </div>
+
+  <script src="src/sdk/sdk.config.js"></script>
+  <script src="src/sdk/gamesdk.js"></script>
+  <script type="module" src="src/main.js"></script>
+</body>
+</html>
